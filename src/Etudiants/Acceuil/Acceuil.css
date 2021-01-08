@@ -1,0 +1,13 @@
+.Acceuil{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+p, ul, h3{
+    font-family: 'Comic Sans MS', 'Comic Sans', 'cursive';
+    color:dimgrey;
+    text-align: justify;
+}
+h3{
+    color: maroon;
+}
