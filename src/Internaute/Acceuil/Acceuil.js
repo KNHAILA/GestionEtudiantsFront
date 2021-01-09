@@ -1,10 +1,12 @@
 import './Acceuil.css';
 import React, { Component } from 'react';
+import imageEnsa from './imageEnsa.jpg'; 
 
 export default class Acceuil extends Component {
     render() {
         return (
             <div className="Acceuil">
+                <img alt="" src={imageEnsa}/>
                 <p>
                     L’Ecole Nationale des Sciences Appliquées de Khouribga est un établissement public relevait de l’Université Hassan 1er depuis sa création en 2007. Elle venait appuyer la volonté gouvernementale dans le cadre de l’initiative nationale  de  formation  de 10.000 ingénieurs à l’horizon 2010.
 Elle a pour objectif  la dynamisation de l’environnement socio-économique et la réponse aux besoins régionaux et nationaux en matière d’ingénierie. Elle s’inscrit dans le cadre de la décentralisation de l’enseignement supérieur. A partir du 1er Septembre 2018 et dans le cadre de la mise en oeuvre de la régionalisation avancée, l'ENSA de Khouribga est rattachée à l'Université Sultan Moulay Slimane.

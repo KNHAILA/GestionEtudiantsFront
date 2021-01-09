@@ -8,6 +8,11 @@ p, ul, h3{
     color:dimgrey;
     text-align: justify;
 }
+img{
+    margin-top: 30px;
+    height: 300px;
+    width: 100%;
+}
 h3{
     color: maroon;
 }

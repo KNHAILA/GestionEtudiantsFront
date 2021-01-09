@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
 
 export default function MenuStatistiques() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,8 +27,8 @@ export default function MenuStatistiques() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Notes</MenuItem>
-        <MenuItem onClick={handleClose}>Absences</MenuItem>
+        <MenuItem onClick={handleClose}><Link to="/Notes">Notes</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link to="/Absences">Absences</Link></MenuItem>
       </Menu>
     </div>
   );

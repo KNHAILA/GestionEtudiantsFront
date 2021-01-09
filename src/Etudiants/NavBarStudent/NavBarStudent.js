@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { Grid, Button } from '@material-ui/core';
 import MenuCours from './Menus/MenuCours';
 import MenuStatistiques from './Menus/MenuStatistiques';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBarStudent() {
   const classes = useStyles();
 
   return (
@@ -31,10 +32,10 @@ export default function NavBar() {
             justify="space-around"
             alignItems="center"
           >
-            <Button color="inherit">Acceuil</Button>
-            <Button color="inherit">Emploi du temps</Button>
+            <Button color="inherit"><Link to="/AcceuilInternaute">Acceuil</Link></Button>
+            <Button color="inherit"><Link to="/EmploiDuTemps">Emploi du temps</Link></Button>
             <MenuCours />
-            <Button color="inherit">Services</Button>
+            <Button color="inherit"><Link to="/Services">Services</Link></Button>
             <MenuStatistiques />
           </Grid>
         </Toolbar>

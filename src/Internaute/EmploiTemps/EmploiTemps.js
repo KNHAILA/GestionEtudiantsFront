@@ -8,7 +8,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import pdf from './pdf1.png'; 
 
 const StyledTableCell = withStyles((theme) => ({
