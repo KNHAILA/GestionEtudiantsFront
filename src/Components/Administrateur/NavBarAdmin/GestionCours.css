@@ -1,0 +1,21 @@
+.addCourse{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+}
+.Informations{
+    padding: 15px;
+    background-color: cadetblue;
+}
+.Informations>p,.Informations> ul, .Informations>h3{
+    font-family: 'Comic Sans MS', 'Comic Sans', 'cursive';
+    color:white;
+    text-align: justify;
+}
+p>span{
+    color: rgb(124, 16, 16);
+}
+.center {
+	display: flex;
+	justify-content: center;
+}
