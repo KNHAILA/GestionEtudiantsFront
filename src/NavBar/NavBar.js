@@ -32,10 +32,10 @@ export default function NavBar(props) {
               justify="space-around"
               alignItems="center"
             >
-              <Button color="inherit"><Link to="/AcceuilInternaute">Acceuil</Link></Button>
-              <Button color="inherit"><Link to="/EmploiDuTemps">Emploi du temps</Link></Button>
+              <Button color="inherit"><Link className="link" to="/AcceuilInternaute">Acceuil</Link></Button>
+              <Button color="inherit"><Link className="link" to="/EmploiDuTemps">Emploi du temps</Link></Button>
               <MenuCours />
-              <Button color="inherit"><Link to="/Services">Services</Link></Button>
+              <Button color="inherit"><Link className="link" to="/Services">Services</Link></Button>
               <MenuStatistiques />
             </Grid>
           </Toolbar>
@@ -54,9 +54,9 @@ export default function NavBar(props) {
           justify="space-around"
           alignItems="center"
         >
-          <Button color="inherit"><Link to="/AcceuilInternaute">Accueil</Link></Button>
-          <Button color="inherit"><Link to="/GestionCours">Gestion des cours</Link></Button>
-          <Button color="inherit"><Link to="/serviceAdmin">Services</Link></Button>
+          <Button color="inherit"><Link className="link" to="/AcceuilInternaute">Accueil</Link></Button>
+          <Button color="inherit"><Link className="link" to="/GestionCours">Gestion des cours</Link></Button>
+          <Button color="inherit"><Link className="link" to="/serviceAdmin">Services</Link></Button>
         </Grid>
       </Toolbar>
     </AppBar>
@@ -74,9 +74,9 @@ export default function NavBar(props) {
             alignItems="center"
           >
             <Button color="inherit">
-            <Link to="/AcceuilInternaute">Acceuil</Link></Button>
-            <Button color="inherit"><Link to="/EmploiDuTemps">Emploi du temps</Link></Button>
-            <Button color="inherit"><Link to="/Login">Login</Link></Button>
+            <Link to="/AcceuilInternaute" className="link">Acceuil</Link></Button>
+            <Button color="inherit"><Link className="link" to="/EmploiDuTemps">Emploi du temps</Link></Button>
+            <Button color="inherit"><Link className="link" to="/Login">Login</Link></Button>
           </Grid>
         </Toolbar>
       </AppBar>
