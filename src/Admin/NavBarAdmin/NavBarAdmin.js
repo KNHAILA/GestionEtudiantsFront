@@ -30,9 +30,9 @@ export default function NavBarAdmin() {
             justify="space-around"
             alignItems="center"
           >
-            <Button color="inherit">Accueil</Button>
-            <Button color="inherit">Gestion des cours</Button>
-            <Button color="inherit">Services</Button>
+            <Button color="inherit"><Link to="/AcceuilInternaute">Accueil</Link></Button>
+            <Button color="inherit"><Link to="/GestionCours">Gestion des cours</Link></Button>
+            <Button color="inherit"><Link to="/service">Services</Link></Button>
           </Grid>
         </Toolbar>
       </AppBar>

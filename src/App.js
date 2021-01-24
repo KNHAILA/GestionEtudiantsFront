@@ -10,6 +10,8 @@ import Service from './Etudiants/Service/Service';
 import NavBarInternaute from './Internaute/NavBarInternaute/NavBarInternaute';
 import Acceuil from './Internaute/Acceuil/Acceuil';
 import NavBarStudent from './Etudiants/NavBarStudent/NavBarStudent';
+import Notes  from './Etudiants/Statistiques/notes'
+import Chart  from './Etudiants/Statistiques/absences'
 function App() {
   return (
     <div className="App">
@@ -22,8 +24,8 @@ function App() {
         <Route exact path='/Services' component={Service} />
         <Route exact path='/ListeCours' component={CoursListe} />
         <Route exact path='/ChercherCours' component={CoursSearch} />
-        <Route exact path='/Notes' />
-        <Route exact path='/Absences' />
+        <Route exact path='/Notes' component={Notes}/>
+        <Route exact path='/Absences' component={Chart}/>
       </BrowserRouter>
     </div>
   );
