@@ -12,6 +12,7 @@ import Acceuil from './Internaute/Acceuil/Acceuil';
 import NavBarStudent from './Etudiants/NavBarStudent/NavBarStudent';
 import Notes  from './Etudiants/Statistiques/notes'
 import Chart  from './Etudiants/Statistiques/absences'
+import TraitementDemandes from './Admin/Service/TraitementDemandes'
 function App() {
   return (
     <div className="App">

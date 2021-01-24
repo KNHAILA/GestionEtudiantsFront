@@ -124,7 +124,7 @@ export default function Notes() {
             {semestres && semestres.map(sem => {
 
                 return (
-                    <div className="center">
+                    <div >
 
                         <MyList className="list" button onClick={() => handleClick(sem.id)}>
 
