@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import {Link} from 'react-router-dom'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -25,8 +26,8 @@ class Login extends Component {
                         </div>
                         <Divider />
                         <form onSubmit={this.onSubmit} noValidate autoComplete="off">
-                            <TextField type="text" size="small" margin="normal" fullWidth label="Identifiant" variant="outlined" value={user.login} onChange={e => this.handleUserChange({ login: e.target.value })} /><br />
-                            <TextField type="password" size="small" margin="normal" fullWidth label="Mot de passe" variant="outlined" value={user.password} onChange={e => this.handleUserChange({ password: e.target.value })} /><br />
+                            <TextField type="text" size="small" margin="normal" fullWidth label="Identifiant" variant="outlined" value={user.login}/* onChange={e => this.handleUserChange({ login: e.target.value })} *//><br />
+                            <TextField type="password" size="small" margin="normal" fullWidth label="Mot de passe" variant="outlined" value={user.password} /*onChange={e => this.handleUserChange({ password: e.target.value })}*/ /><br />
                             <Grid
                                 container
                                 direction="column"
@@ -37,7 +38,7 @@ class Login extends Component {
                                     <Button type="submit" disabled={user.login == "" || user.password == ""} variant="contained">Entrer</Button>
                                 </Grid>
                                 <Grid item>
-                                   {/* <Link to='/mdpOublie'>Mot de passe oublié ?</Link>*/}
+                                   <Link to='/signUp'>s'inscrire ?</Link>
                                 </Grid>
                             </Grid>
                             <div id='invalid' className='center'>{this.state.error}</div>
