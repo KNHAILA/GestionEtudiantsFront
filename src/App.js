@@ -13,6 +13,7 @@ import Notes from './Etudiants/Statistiques/notes'
 import Chart from './Etudiants/Statistiques/absences'
 import GestionCours from './Admin/Cours/GestionCours'
 import TraitementDemandes from './Admin/Service/TraitementDemandes'
+import signUp from'./Login/signUp'
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route exact path='/ChercherCours' component={CoursSearch} />
             <Route exact path='/Notes' component={Notes} />
             <Route exact path='/GestionCours' component={GestionCours} />
-
+            <Route exact path='/signUp' component={signUp} />
             <Route exact path='/serviceAdmin' component={TraitementDemandes} />
           <Route exact path='/Absences' component={Chart} />
         </Switch>
