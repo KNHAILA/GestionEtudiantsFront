@@ -16,8 +16,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Badge from '@material-ui/core/Badge';
-import './traitementDemandes.css'
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -176,7 +174,7 @@ export default function TraitementDemandes() {
                 {services && services.map(ser => {
 
                     return (
-                        <div className="center">
+                        <div >
 
 
                             <div  >

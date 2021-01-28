@@ -10,8 +10,16 @@
   font-weight: bold;
   color: white;
 }
+.link{
+  text-decoration: none;
+  color: white;
+}
 
-
+.chart{
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 50px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

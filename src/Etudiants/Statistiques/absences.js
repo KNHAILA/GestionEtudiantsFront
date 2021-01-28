@@ -1,16 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chartjs from "chart.js";
 
-const randomInt = () => Math.floor(Math.random() * (10 - 1 + 1)) + 1;
 
+const Chart = () => {
+
+  const chartContainer = useRef(null);
+  const [modules, setModules]=useState(["Algèbre", "Analyse", "Technologie JEE", "Génie logiciel", "Systèmes distribués", "Administration réseaux et securité"])
+  const [chartInstance, setChartInstance] = useState(null);
 const chartConfig = {
   type: "bar",
   data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: modules,
     datasets: [
       {
-        
-        data: [12, 19, 3, 5, 2, 3],
+
+        data: [10, 5, 3, 5, 20, 30],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -28,7 +32,7 @@ const chartConfig = {
           "rgba(255, 159, 64, 1)"
         ],
         borderWidth: 1,
-        label: "# of Votes"
+        label: "Percentage d'absence"
       }
     ]
   },
@@ -37,17 +41,20 @@ const chartConfig = {
       yAxes: [
         {
           ticks: {
+            callback: function(value) {
+              return value + "%"
+          },
             beginAtZero: true
-          }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "Percentage d'absence"
+        }
         }
       ]
     }
   }
 };
-
-const Chart = () => {
-  const chartContainer = useRef(null);
-  const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
@@ -61,10 +68,10 @@ const Chart = () => {
     chartInstance.update();
   };
 
-  
+
 
   return (
-    <div>
+    <div className="chart">
       <canvas ref={chartContainer} />
     </div>
   );
