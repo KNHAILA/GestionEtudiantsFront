@@ -13,6 +13,7 @@ import Notes from './Etudiants/Statistiques/notes'
 import Chart from './Etudiants/Statistiques/absences'
 import GestionCours from './Admin/Cours/GestionCours'
 import TraitementDemandes from './Admin/Service/TraitementDemandes'
+import signUp from'./Login/signUp'
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         {/* <Route exact path='/' component={NavBarInternaute} />*/}
-        <NavBar user={"internaute"}/>
+        <NavBar user={"student"}/>
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/EmploiDuTemps' component={EmploiTemps} />
@@ -30,7 +31,7 @@ function App() {
             <Route exact path='/ChercherCours' component={CoursSearch} />
             <Route exact path='/Notes' component={Notes} />
             <Route exact path='/GestionCours' component={GestionCours} />
-
+            <Route exact path='/signUp' component={signUp} />
             <Route exact path='/serviceAdmin' component={TraitementDemandes} />
           <Route exact path='/Absences' component={Chart} />
         </Switch>

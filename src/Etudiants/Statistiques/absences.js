@@ -32,11 +32,13 @@ const chartConfig = {
           "rgba(255, 159, 64, 1)"
         ],
         borderWidth: 1,
-        label: "Percentage d'absence"
       }
     ]
   },
   options: {
+    legend: {
+      display: false
+  },
     scales: {
       yAxes: [
         {
