@@ -3,10 +3,14 @@ import Chartjs from "chart.js";
 
 
 const Chart = () => {
+
+  const chartContainer = useRef(null);
+  const [modules, setModules]=useState(["Algèbre", "Analyse", "Technologie JEE", "Génie logiciel", "Systèmes distribués", "Administration réseaux et securité"])
+  const [chartInstance, setChartInstance] = useState(null);
 const chartConfig = {
   type: "bar",
   data: {
-    labels: ["Algèbre", "Analyse", "Technologie JEE", "Génie logiciel", "Systèmes distribués", "Administration réseaux et securité"],
+    labels: modules,
     datasets: [
       {
 
@@ -51,10 +55,6 @@ const chartConfig = {
     }
   }
 };
-
-
-  const chartContainer = useRef(null);
-  const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
