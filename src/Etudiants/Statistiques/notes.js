@@ -67,13 +67,13 @@ export default function Notes() {
                     id: "0",
                     nom: "module 1",
                     note: "15",
-                    absence: "2"
+                    
                 },
                 {
                     id: "3",
                     nom: "module 2",
                     note: "15",
-                    absence: "2"
+                    
                 }
             ]
         },
@@ -86,13 +86,13 @@ export default function Notes() {
                     id: "1",
                     nom: "module 1",
                     note: "12",
-                    absence: "2"
+                    
                 },
                 {
                     id: "2",
                     nom: "module 2",
                     note: "16",
-                    absence: "2"
+                    
                 }
             ]
         }
