@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         {/* <Route exact path='/' component={NavBarInternaute} />*/}
-        <NavBar user={"student"}/>
+        <NavBar user={"admin"}/>
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/EmploiDuTemps' component={EmploiTemps} />
