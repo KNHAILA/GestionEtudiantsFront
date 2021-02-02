@@ -5,7 +5,8 @@ import Chartjs from "chart.js";
 const Chart = () => {
 
   const chartContainer = useRef(null);
-  const [modules, setModules]=useState(["Algèbre", "Analyse", "Technologie JEE", "Génie logiciel", "Systèmes distribués", "Administration réseaux et securité"])
+  const [modules, setModules]=useState([])
+  const [prc, setprc]=useState([])
   const [chartInstance, setChartInstance] = useState(null);
 const chartConfig = {
   type: "bar",
@@ -14,7 +15,7 @@ const chartConfig = {
     datasets: [
       {
 
-        data: [10, 5, 3, 5, 20, 30],
+        data: prc,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -59,11 +60,27 @@ const chartConfig = {
 };
 
   useEffect(() => {
-    if (chartContainer && chartContainer.current) {
+    fetch(`http://localhost:8080/Etude/listNomMatieres/F1`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+      setModules(data)
+    })
+    fetch(`http://localhost:8080/Etude/listPourcentages/F1`)
+    .then(res => res.json())
+    .then(data => {
+        chartConfig.data=data
+        console.log(data)
+      setprc(data)
+    })
+  }, []);
+  useEffect(() => {
+    if (prc!=undefined && modules!=undefined &&chartContainer && chartContainer.current) {
       const newChartInstance = new Chartjs(chartContainer.current, chartConfig);
       setChartInstance(newChartInstance);
-    }
-  }, [chartContainer]);
+    } 
+    console.log("jhbbjh")
+  }, [prc]);
 
   const updateDataset = (datasetIndex, newData) => {
     chartInstance.data.datasets[datasetIndex].data = newData;

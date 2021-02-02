@@ -14,7 +14,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import '../../nested.css'
+import '../../nested.css';
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,48 +57,15 @@ const MyList = styled(ListItem)({
 
 export default function Notes() {
     const classes = useStyles();
-    const [semestres, setSemestres] = React.useState([
-
-        {
-            id: "1",
-            code: "Semestre 1",
-            open: false,
-            modules: [
-                {
-                    id: "0",
-                    nom: "module 1",
-                    note: "15",
-                    
-                },
-                {
-                    id: "3",
-                    nom: "module 2",
-                    note: "15",
-                    
-                }
-            ]
-        },
-        {
-            id: "2",
-            code: "Semestre 2",
-            open: false,
-            modules: [
-                {
-                    id: "1",
-                    nom: "module 1",
-                    note: "12",
-                    
-                },
-                {
-                    id: "2",
-                    nom: "module 2",
-                    note: "16",
-                    
-                }
-            ]
-        }
-    ])
-
+    const [semestres, setSemestres] = React.useState([])
+    useEffect(() => {
+        fetch(`http://localhost:8080/Etude/listNotes/F1`)
+          .then(res => res.json())
+          .then(data => {
+              console.log(data)
+            setSemestres(data)
+          })
+      },[])
     const handleClick = (id) => {
         semestres && semestres.map(sem => {
             if (sem.id === id) {
@@ -141,7 +109,7 @@ export default function Notes() {
                                             <StyledTableCell id="nested-list-subheader" align="right">NOTE</StyledTableCell>
                                         </TableRow>
                                         <TableBody>
-                                            {sem.modules && sem.modules.map(module => {
+                                            {sem.matieres && sem.matieres.map(module => {
                                                 return (
                                                     <StyledTableRow key={module.id}>
 

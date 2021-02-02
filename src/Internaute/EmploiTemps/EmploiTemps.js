@@ -8,6 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useEffect, useState } from "react";
 import pdf from './pdf1.png'; 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -25,17 +26,6 @@ const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell);
 
-
-function createData(annee, gi, giid) {
-  return {annee, gi, giid };
-}
-
-const rows = [
-  createData("Première Année", "/CoursBI.pdf","/CoursBI.pdf"),
-  createData("Deuxième Année",  "/CoursBI.pdf","/CoursBI.pdf"),
-  createData("Troisième Année",  "/CoursBI.pdf","/CoursBI.pdf")
-];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700
@@ -43,9 +33,16 @@ const useStyles = makeStyles({
 });
 
 export default function EmploiTemps() {
+  const [rows, setRows] = useState([]);
   const classes = useStyles();
-
-
+  useEffect(() => {
+    fetch(`http://localhost:8080/EmploiTemps/list`)
+      .then(res => res.json())
+      .then(data => {
+        setRows(data)
+      })
+  },[])
+  
   return (
       <div className="EmploiTemps">
           <p>Emplois du temps du premier semestre au titre de l' Année Universitaire 2020/2021: Vous êtes tenus de les consulter régulièrement pour être informés de toute éventuelle modification. </p>
@@ -58,15 +55,24 @@ export default function EmploiTemps() {
             <StyledTableCell>Génie d'Ingénierie des Données</StyledTableCell>
           </TableRow>
         </TableHead>
+        {rows && rows.length>4 ?
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.annee}>
-              <StyledTableCell>{row.annee}</StyledTableCell>
-              <TableCell align="center"><a href = {row.gi} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
-              <TableCell align="center"><a href = {row.gi} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+            <TableRow key="Première Année">
+              <StyledTableCell>Première Année</StyledTableCell>
+              <TableCell align="center"><a href ={rows[0].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+              <TableCell align="center"><a href = {rows[3].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
             </TableRow>
-          ))}
-        </TableBody>
+            <TableRow key="Deuxième Année">
+              <StyledTableCell>Deuxième Année</StyledTableCell>
+              <TableCell align="center"><a href = {rows[1].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+              <TableCell align="center"><a href = {rows[4].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+            </TableRow>
+            <TableRow key="Troisième Année">
+              <StyledTableCell>Troisième Année</StyledTableCell>
+              <TableCell align="center"><a href = {rows[2].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+              <TableCell align="center"><a href = {rows[5].pdfLink} target = "_blank">Consulter<img alt="" src={pdf} style={{width: "40px", height: "40px", verticalAlign: "middle"}}/></a></TableCell>
+            </TableRow>
+        </TableBody>:("")}
       </Table>
     </TableContainer>
     </div>
