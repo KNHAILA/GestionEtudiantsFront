@@ -20,8 +20,7 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
-        {/* <Route exact path='/' component={NavBarInternaute} />*/}
-        <NavBar user={"admin"}/>
+        <NavBar user={"student"}/>
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/EmploiDuTemps' component={EmploiTemps} />
