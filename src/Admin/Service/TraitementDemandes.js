@@ -16,6 +16,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Badge from '@material-ui/core/Badge';
+import { useEffect, useState } from "react";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,76 +63,14 @@ const MyList = styled(ListItem)({
 
 export default function TraitementDemandes() {
     const classes = useStyles();
-    const [services, setServices] = React.useState([
-
-        {
-            id: "1",
-            nom: "Service 1",
-            open: false,
-            nombre: "2",
-            plusInfo: "plus d'informations plus d'informations",
-            etudiants: [
-                {
-                    id: "01",
-                    cne: " LFG13344",
-                    nom: "GHAFFOUR",
-                    prenom: "Mina",
-                    dateNaissance: "16/08/1998",
-                    tel: "06666666",
-                    email: "minaghaffour@gmail.com",
-                    adressse: "Azilal",
-                    classe: "GI3",
-                    open: false
-                },
-                {
-                    id: "02",
-                    cne: " LFG13344",
-                    nom: "GHAFFOUR",
-                    prenom: "Mina",
-                    dateNaissance: "16/08/1998",
-                    tel: "06666666",
-                    email: "minaghaffour@gmail.com",
-                    adressse: "Azilal",
-                    classe: "GI3",
-                    open: false
-                }
-            ]
-        },
-        {
-            id: "2",
-            nom: "Service 2",
-            open: false,
-            nombre: "5",
-            plusInfo: "plus d'informations plus d'informations",
-            etudiants: [
-                {
-                    id: "03",
-                    cne: " LFG13344",
-                    nom: "GHAFFOUR",
-                    prenom: "Mina",
-                    dateNaissance: "16/08/1998",
-                    tel: "06666666",
-                    email: "minaghaffour@gmail.com",
-                    adressse: "Azilal",
-                    classe: "GI3",
-                    open: false
-                },
-                {
-                    id: "03",
-                    cne: " LFG13344",
-                    nom: "GHAFFOUR",
-                    prenom: "Mina",
-                    dateNaissance: "16/08/1998",
-                    tel: "06666666",
-                    email: "minaghaffour@gmail.com",
-                    adressse: "Azilal",
-                    classe: "GI3",
-                    open: false
-                }
-            ]
-        }
-    ])
-
+    const [services, setServices] = useState([])
+    useEffect(() => {
+        fetch(`http://localhost:8080/DemandeService/list`)
+            .then(res => res.json())
+            .then(data => {
+                setServices(data)
+            })
+    }, [])
     const handleClick = (id) => {
         services && services.map(ser => {
             if (ser.id === id) {
@@ -139,11 +79,23 @@ export default function TraitementDemandes() {
         })
         setServices([...services])
     };
+    function addId() {
+        let i = 0;
+        let data = services && services.map(ser => {
+            ser.etudiants && ser.etudiants.map(etud => {
+                etud.id = i
+                return etud;
+            })
+         i++
+        })
+        setServices({ services: data })
+    }
 
-    const handleClickEtud = (id) => {
+
+    const handleClickEtud = (cne) => {
         services && services.map(ser => {
             ser.etudiants && ser.etudiants.map(etud => {
-                if (etud.id === id) {
+                if (etud.id === cne) {
                     etud.open = !etud.open;
                 }
             })
@@ -211,7 +163,7 @@ export default function TraitementDemandes() {
                                                             </StyledTableRow>
                                                             <Collapse className="list" in={etudiant.open} timeout="auto" unmountOnExit>
                                                                 <List component="div" disablePadding>
-                                                                    <ListItemText className="list" primary={ser.plusInfo} />
+                                                                    <ListItemText className="list" primary={etudiant.plusInfo} />
                                                                     <Grid container spacing={2}
                                                                         direction="row"
                                                                         justify="flex-end"
@@ -219,11 +171,11 @@ export default function TraitementDemandes() {
                                                                         <Grid item>
                                                                             <Button variant="contained" onClick={() => handleAccepter()}>Accepter</Button>
 
-                                                                        </Grid> 
-                                                                         <Grid item>
+                                                                        </Grid>
+                                                                        <Grid item>
                                                                             <Button className="btns" variant="contained" onClick={() => handleRefuser()}>Refuser</Button>
-                                                                        </Grid> 
-                                                                         </Grid>
+                                                                        </Grid>
+                                                                    </Grid>
                                                                 </List>
                                                             </Collapse>
                                                         </React.Fragment>
