@@ -13,18 +13,26 @@ import Notes from './Etudiants/Statistiques/notes'
 import Chart from './Etudiants/Statistiques/absences'
 import GestionCours from './Admin/Cours/GestionCours'
 import TraitementDemandes from './Admin/Service/TraitementDemandes'
+import { useEffect, useState } from "react";
 import signUp from'./Login/signUp'
 
 function App() {
+  const [user, setUser]= useState("internaute")
+
+  const getUser=(usr)=>{
+      setUser(usr)
+      console.log(usr)
+  }
   return (
 
     <BrowserRouter>
       <div className="App">
-        <NavBar user={"student"}/>
+        <NavBar user={user}/>
           <Switch>
-            <Route exact path='/' component={Login} />
+            <Route exact path='/login'  render={(props)=><Login  getUser={getUser}/>}/>
             <Route exact path='/EmploiDuTemps' component={EmploiTemps} />
             <Route exact path='/AcceuilInternaute' component={Acceuil} />
+            <Route exact path='/' component={Acceuil} />
             <Route exact path='/Services' component={Service} />
             <Route exact path='/ListeCours' component={CoursListe} />
             <Route exact path='/ChercherCours' component={CoursSearch} />

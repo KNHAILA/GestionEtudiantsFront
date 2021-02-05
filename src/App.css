@@ -1,7 +1,10 @@
 .center {
   text-align: center;
 }
-
+#error{
+  color: red;
+  text-align:center;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -10,6 +13,7 @@
   font-weight: bold;
   color: white;
 }
+
 .link{
   text-decoration: none;
   color: white;

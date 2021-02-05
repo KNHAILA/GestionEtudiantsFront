@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
-import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -12,15 +11,18 @@ export class signUp extends Component {
         super(props);
         this.state = {
             user: {
+                id: '',
                 nom: "",
                 prenom: "",
                 email: "",
-                motPasse: "",
-                motPasseConfirme: "",
-                fonction: "",
+                password: "",
+                passwordConfirme: "",
+                fonction: 1,
                 departement: ""
 
-            }
+            },
+            error: '',
+            isError: false
         }
     }
     handleChange(newPartialInput) {
@@ -32,9 +34,71 @@ export class signUp extends Component {
             }
         }))
     }
+    onSubmit = (e) => {
+        e.preventDefault()
+        const usr = this.state.user.fonction;
+        const user = this.state.user
+        if (user.password === user.passwordConfirme) {
+            if (usr === 2) {
+                fetch(`http://localhost:8080/Etudiant/add`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "cne": user.id,
+                        "nom": user.nom,
+                        "prenom": user.prenom,
+                        "email": user.email,
+                        "password": user.password
+                    })
+                })
+
+            } else {
+                fetch(`http://localhost:8080/Admin/add`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "matricule": user.id,
+                        "nom": user.nom,
+                        "prenom": user.prenom,
+                        "email": user.email,
+                        "password": user.password
+                    })
+                })
+            }
+            this.setState({
+                user: {
+                    id: '',
+                    nom: "",
+                    prenom: "",
+                    email: "",
+                    password: "",
+                    passwordConfirme: "",
+                    fonction: 1,
+                    departement: ""
+
+                },
+                error: '',
+                isError: false
+            })
+        } else {
+            this.setState(
+                {
+                    ...user,
+                    error: "Les mots de passe ne convient pas",
+                    isError: true
+                }
+            )
+        }
+    }
 
     render() {
-        const  user  = this.state.user;
+        const user = this.state.user;
         return (
 
             <div className="login">
@@ -45,15 +109,13 @@ export class signUp extends Component {
                             <span align="left" id="connexion">S'inscrire</span>
                         </div>
                         <Divider />
-                        <form onSubmit={this.onSubmit} noValidate autoComplete="off">
-                            <TextField type="text" size="small" margin="normal" fullWidth label="Nom" value={user.nom}  variant="outlined" onChange={e => this.handleChange({ nom: e.target.value })}/><br />
-
-
-                            <TextField type="text" size="small" margin="normal" fullWidth label="Prenom" variant="outlined" value={user.prenom} onChange={e => this.handleChange({ prenom: e.target.value })}/><br />
-                            
-                            <TextField type="email" size="small" margin="normal" fullWidth label="Email" variant="outlined" value={user.email} onChange={e => this.handleChange({ email: e.target.value })}/><br />
-                            <TextField type="password" size="small" margin="normal" fullWidth label="Mot de passe" variant="outlined" value={user.motPasse} onChange={e => this.handleChange({ motPasse: e.target.value })}/><br />
-                            <TextField type="password" size="small" margin="normal" fullWidth label="Confirmer le mot de passe" variant="outlined" value={user.motPasseConfirme} onChange={e => this.handleChange({ motPasseConfirme: e.target.value })}/><br />
+                        <form onSubmit={e => this.onSubmit(e)} noValidate autoComplete="off">
+                            <TextField type="text" size="small" margin="normal" fullWidth label="Identifiant" value={user.id} variant="outlined" onChange={e => this.handleChange({ id: e.target.value })} /><br />
+                            <TextField type="text" size="small" margin="normal" fullWidth label="Nom" value={user.nom} variant="outlined" onChange={e => this.handleChange({ nom: e.target.value })} /><br />
+                            <TextField type="text" size="small" margin="normal" fullWidth label="Prenom" variant="outlined" value={user.prenom} onChange={e => this.handleChange({ prenom: e.target.value })} /><br />
+                            <TextField type="email" size="small" margin="normal" fullWidth label="Email" variant="outlined" value={user.email} onChange={e => this.handleChange({ email: e.target.value })} /><br />
+                            <TextField type="password" size="small" margin="normal" fullWidth label="Mot de passe" variant="outlined" value={user.password} onChange={e => this.handleChange({ password: e.target.value })} /><br />
+                            <TextField type="password" size="small" margin="normal" fullWidth label="Confirmer le mot de passe" variant="outlined" value={user.passwordConfirme} onChange={e => this.handleChange({ passwordConfirme: e.target.value })} /><br />
                             <FormControl size="small" variant="outlined" margin="dense" fullWidth>
                                 <InputLabel>Votre fonction</InputLabel>
                                 <Select
@@ -67,6 +129,7 @@ export class signUp extends Component {
 
                                 </Select>
                             </FormControl><br />
+                            {this.state.isError ? (<p id='error'>{this.state.error}</p>) : ('')}
                             <Grid
                                 container
                                 direction="column"
@@ -76,7 +139,11 @@ export class signUp extends Component {
                                 <Grid item>
                                     <Button type="submit" variant="contained">Entrer</Button>
                                 </Grid>
-                                
+
+                                <Grid item>
+                                    <Link to='login'>Se connecter ?</Link>
+                                </Grid>
+
                             </Grid>
                         </form>
                     </Grid>
