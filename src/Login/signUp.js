@@ -100,11 +100,10 @@ export class signUp extends Component {
     render() {
         const user = this.state.user;
         return (
-
-            <div className="login">
-
+<div>
                 <Grid container direction="row" justify="space-around" alignItems="stretch">
                     <Grid item xs={5}>
+                 
                         <div className="connexion">
                             <span align="left" id="connexion">S'inscrire</span>
                         </div>
@@ -133,11 +132,12 @@ export class signUp extends Component {
                             <Grid
                                 container
                                 direction="column"
-                                justify="space-around"
-                                alignItems="flex-end"
+                                justify="center"
+                                alignItems="center"
+                              
                             >
                                 <Grid item>
-                                    <Button type="submit" variant="contained">Entrer</Button>
+                                    <Button type="submit" variant="contained" color="primary">Entrer</Button>
                                 </Grid>
 
                                 <Grid item>
@@ -147,10 +147,7 @@ export class signUp extends Component {
                             </Grid>
                         </form>
                     </Grid>
-                    <Grid item>
-                        <div className="height"></div>
-                        <Divider orientation="vertical" variant="middle" style={{ height: "180px" }} />
-                    </Grid>
+                 
                 </Grid>
 
 

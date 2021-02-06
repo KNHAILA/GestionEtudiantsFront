@@ -88,9 +88,9 @@ export class GestionCours extends Component {
                         value={cours.description}
                         onChange={e => this.handleCoursChange({ description: e.target.value })}
                     />
-                    <div><Button variant="contained"> Importer le document<input type="file" style={{ position: "absolute", width: "100%", height: "100%", opacity: "0" }} name="file" onChange={this.changeHandler} /></Button> <span>{this.state.cours.selectedFile.name}</span></div><br />
+                    <div><Button variant="contained" color="primary"> Importer le document<input type="file" style={{ position: "absolute", width: "100%", height: "100%", opacity: "0" }} name="file" onChange={this.changeHandler} /></Button> <span>{this.state.cours.selectedFile.name}</span></div><br />
                     <div className="center">
-                        <Button variant="contained" onClick={e => this.handleAddCourse(e)}> Ajouter le cours</Button>
+                        <Button variant="contained" color="primary" onClick={e => this.handleAddCourse(e)}> Ajouter le cours</Button>
                     </div>
 
                 </form>
