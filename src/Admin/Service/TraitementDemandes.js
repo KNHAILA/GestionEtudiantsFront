@@ -31,6 +31,20 @@ const useStyles = makeStyles((theme) => ({
     nested: {
         paddingLeft: theme.spacing(4),
     },
+    margin: {
+        marginTop: '50px',
+        marginLeft: '200px',
+        marginRight: '200px'
+    },
+    marginRight: {
+        display: 'flex',
+        marginLeft: '0px'
+    },
+    l: {
+        marginLeft: 'auto'
+    }
+
+
 
 }));
 
@@ -86,7 +100,7 @@ export default function TraitementDemandes() {
                 etud.id = i
                 return etud;
             })
-         i++
+            i++
         })
         setServices({ services: data })
     }
@@ -112,7 +126,7 @@ export default function TraitementDemandes() {
     }
 
     return (
-        <div className="services" >
+        <div className={classes.margin} >
             <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
@@ -126,7 +140,7 @@ export default function TraitementDemandes() {
                 {services && services.map(ser => {
 
                     return (
-                        <div >
+                        <div>
 
 
                             <div  >
@@ -161,23 +175,29 @@ export default function TraitementDemandes() {
                                                                 <StyledTableCell>{etudiant.open ? <ExpandLess /> : <ExpandMore />}</StyledTableCell>
 
                                                             </StyledTableRow>
-                                                            <Collapse className="list" in={etudiant.open} timeout="auto" unmountOnExit>
-                                                                <List component="div" disablePadding>
-                                                                    <ListItemText className="list" primary={etudiant.plusInfo} />
-                                                                    <Grid container spacing={2}
-                                                                        direction="row"
-                                                                        justify="flex-end"
-                                                                        alignItems="center">
-                                                                        <Grid item>
-                                                                            <Button variant="contained" onClick={() => handleAccepter()}>Accepter</Button>
+                                                            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
+                                                                <Collapse className="list" in={etudiant.open} timeout="auto" unmountOnExit >
 
+                                                                    <List component="div" disablePadding>
+                                                                        <ListItemText className="list" primary={etudiant.plusInfo} />
+
+                                                                        <Grid container spacing={2}
+                                                                            direction="row"
+                                                                            justify="flex-end"
+                                                                            alignItems="center">
+                                                                            <Grid item>
+                                                                                <Button variant="contained" color="primary" onClick={() => handleAccepter()}>Accepter</Button>
+
+                                                                            </Grid>
+                                                                            <Grid item>
+                                                                                <Button className="btns" variant="contained" color="primary" onClick={() => handleRefuser()}>Refuser</Button>
+                                                                            </Grid>
                                                                         </Grid>
-                                                                        <Grid item>
-                                                                            <Button className="btns" variant="contained" onClick={() => handleRefuser()}>Refuser</Button>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </List>
-                                                            </Collapse>
+                                                                    </List>
+
+                                                                </Collapse>
+                                                                </TableCell >
+                                                               
                                                         </React.Fragment>
 
                                                     )

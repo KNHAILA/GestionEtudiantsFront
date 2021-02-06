@@ -88,7 +88,7 @@ export default class Service extends Component {
         this.setState({
             service: {
                 documentDemande: 1,
-                anneeEtude: "GI1",
+                anneeEtude: "",
                 plusInfo: ""
             }
         })
@@ -153,7 +153,7 @@ export default class Service extends Component {
                         onChange={e => this.handleServiceChange({ plusInfo: e.target.value })}
                     />
                     <div className="center">
-                        <Button type="submit" variant="contained">Envoyer</Button>
+                        <Button type="submit" variant="contained" color="primary">Envoyer</Button>
                     </div>
                 </form>
             </div >

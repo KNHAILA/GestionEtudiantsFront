@@ -56,7 +56,7 @@ export default function Login({ getUser }) {
         return <Redirect to={redirect} />
     } else {
         return (
-            <div className="login">
+            <div>
                 <Grid container direction="row" justify="space-around" alignItems="stretch">
                     <Grid item xs={5}>
                         <div className="connexion">
@@ -66,21 +66,24 @@ export default function Login({ getUser }) {
                         <form onSubmit={e => authentification(e, user.login, user.password)} noValidate autoComplete="off">
                             <TextField type="text" size="small" margin="normal" fullWidth label="Identifiant" variant="outlined" value={user.login} onChange={e => handleUserChange({ login: e.target.value })} /><br />
                             <TextField type="password" size="small" margin="normal" fullWidth label="Mot de passe" variant="outlined" value={user.password} onChange={e => handleUserChange({ password: e.target.value })} /><br />
+                           
                             {isError ? (<p id='error'>{error}</p>) : ('')}
                             <Grid
                                 container
                                 direction="column"
-                                justify="space-around"
-                                alignItems="flex-end"
+                                justify="center"
+                                alignItems="center"
+                              
                             >
                                 <Grid item>
-                                    <Button type="submit" disabled={user.login == "" || user.password == ""} variant="contained">Entrer</Button>
+                               <Button type="submit" color="primary" disabled={user.login == "" || user.password == ""} variant="contained">Entrer</Button>
                                 </Grid>
 
                                 <Grid item>
-                                    <Link to='/signUp'>s'inscrire ?</Link>
+                                <Link to='/signUp'>s'inscrire ?</Link>
                                 </Grid>
                             </Grid>
+                           
 
                         </form>
                     </Grid>

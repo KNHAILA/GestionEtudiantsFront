@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
     nested: {
         paddingLeft: theme.spacing(4),
     },
+    margin:{
+        marginTop:'50px',
+        marginLeft:'200px',
+        marginRight:'200px'
+    }
 
 }));
 
@@ -77,7 +82,7 @@ export default function Notes() {
     };
 
     return (
-    <div className="services">
+    <div className={classes.margin}>
         <List 
             component="nav"
             aria-labelledby="nested-list-subheader"
